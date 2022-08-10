@@ -4,6 +4,7 @@ const database = require('./models')
 // import routes
 const userRouter = require('./routers/userRouter')
 const postRouter = require('./routers/postRouter')
+const likeRouter = require('./routers/likeRouter')
 
 //import the .env variables
 require('dotenv').config()
@@ -15,9 +16,9 @@ app.use(express.json())
 app.use(cors())
 
 // ROUTES
-
 app.use('/api/user', userRouter)
 app.use('/api/post', postRouter)
+app.use('/api/like', likeRouter)
 
 //CONNECT TO THE DATABASE
 database.sequelize.sync().then(() => {

@@ -9,6 +9,7 @@ const createPost = async (req, res) => {
       postText,
       postImg,
       username: req.user.username,
+      UserId: req.user.id
     });
     res.status(201).json({ post });
   } catch (error) {
@@ -22,8 +23,8 @@ const allPosts = async (req, res) => {
     const listofposts = await Posts.findAll({
       include: [Likes]
     });
-    // const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
-    res.status(200).json({ listofposts });
+    const likedPosts = await Likes.findAll();
+    res.status(200).json({ listofposts, likedPosts });
   } catch (error) {
     res.status(400).json(error);
   }
