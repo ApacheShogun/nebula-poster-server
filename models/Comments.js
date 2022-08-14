@@ -4,11 +4,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        commentImg: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         username: {
             type: DataTypes.STRING,
             allowNull: false
         }
     })
+    
 
     return Comments
 }

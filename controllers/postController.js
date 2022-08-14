@@ -1,4 +1,4 @@
-const { Posts, Likes } = require("../models");
+const { Posts, Likes, Comments} = require("../models");
 
 // create a post
 const createPost = async (req, res) => {
@@ -21,7 +21,7 @@ const createPost = async (req, res) => {
 const allPosts = async (req, res) => {
   try {
     const listofposts = await Posts.findAll({
-      include: [Likes]
+      include: [Likes, Comments]
     });
     const likedPosts = await Likes.findAll();
     res.status(200).json({ listofposts, likedPosts });
@@ -35,7 +35,7 @@ const onePost = async (req, res) => {
   const {id} = req.params
 
   try {
-    const post = await Posts.findByPk(id);
+    const post = await Posts.findByPk(id,{include: [Likes]});
     res.status(200).json(post);
   } catch (error) {
     res.status(400).json(error);
