@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
     
+    Comments.associate = (models) => {
+
+        Comments.hasMany(models.CommentLikes, {
+            onDelete: 'cascade',
+        })
+    }
 
     return Comments
 }

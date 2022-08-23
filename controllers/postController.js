@@ -30,6 +30,18 @@ const allPosts = async (req, res) => {
   }
 };
 
+//get all posts for profile
+const profilePosts = async (req, res) => {
+  const {id} = req.params
+
+  try {
+    const posts = await Posts.findAll({ where: { UserId: id }, include: [Likes, Comments] });
+    res.status(200).json({ posts });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}
+
 // get a single post 
 const onePost = async (req, res) => {
   const {id} = req.params
@@ -72,4 +84,4 @@ const deletePost = async (req, res) => {
   }
 };
 
-module.exports = { createPost, allPosts, deletePost, updatePost, onePost};
+module.exports = { createPost, allPosts, deletePost, updatePost, onePost, profilePosts};
