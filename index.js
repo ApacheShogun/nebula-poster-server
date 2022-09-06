@@ -27,6 +27,8 @@ database.sequelize.sync().then(() => {
     app.listen(process.env.PORT || 4001, () => {
         console.log(`the server is running on ${process.env.PORT || 4001}`);
     })
+}).catch(err => {
+    console.log(err);
 })
 
 
