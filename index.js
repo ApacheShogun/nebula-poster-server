@@ -24,8 +24,8 @@ app.use('/api/comment', commentRouter)
 
 //CONNECT TO THE DATABASE
 database.sequelize.sync().then(() => {
-    app.listen(process.env.PORT || 4001, () => {
-        console.log(`the server is running on ${process.env.PORT || 4001}`);
+    app.listen(process.env.PORT || 4000, () => {
+        console.log(`the server is running on ${process.env.PORT || 4000}`);
     })
 }).catch(err => {
     console.log(err);
